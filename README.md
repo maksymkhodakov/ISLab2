@@ -28,8 +28,8 @@
 ##### Чи наслідує:
 ```
 ?- inherit(lion, animal).
+?- inherit(dolphin, living_being).
 ```
-
 
 -----
 ##### Чи є частиною:
@@ -47,12 +47,14 @@
 ?- prohibit_inheritance(teeth, animal).
 ```
 
+
 -----
 ##### Мульти-спадкування:
 ```
 ?- multi_inherit(mermaid, [mythical_creature, human]).
 ?- multi_inherit(dragon, [mythical_creature, reptile]).
 ?- multi_inherit(basilisk, [mythical_creature, reptile]).
+?- multi_inherit(centaur, [mythical_creature, horse, human]).
 ```
 
 -----
@@ -60,6 +62,7 @@
 ```
 ?- inherit(tiger, Ancestor).
 ?- inherit(dolphin, Ancestor).
+?- inherit(whale, Ancestor).
 ```
 
 
@@ -187,9 +190,8 @@
    Додані два нові типи зв'язків:
    - `causes/2` для причинно-наслідкових зв'язків.
    - `requires/2` для функціональних зв'язків.
-   - **Нові**:
-      - `interaction/2` та транзитивне правило `interaction_chain/2`.
-      - `dependent_on/2` та транзитивне правило `dependency_chain/2`.
+   - `interaction/2` та транзитивне правило `interaction_chain/2`.
+   - `dependent_on/2` та транзитивне правило `dependency_chain/2`.
 
    Додані правила `causal_chain/2` та `required_chain/2`, які показують вплив нових типів зв'язків на виведення.  
    **Виконано:** ✔
