@@ -16,12 +16,15 @@
                 _____________________|__________________
                |                                        |
             plant                                   animal
-         _____|______                           ________|_________
-        |           |                         |        |        |
-      tree        herb                       mammal   bird    reptile
-       |            |                         |       |         |
-    leaf, branch flower                    cat, dog   sparrow  lizard, snake
-        |                                lion, tiger            crocodile
+         _____|______                           ________|_______________________
+        |           |                         |        |         |             |
+      tree        herb                       mammal   bird     reptile    mythical_creature
+       |            |                         |       |         |             |
+    leaf, branch  flower                    cat, dog  sparrow  lizard, snake  dragon, mermaid
+       |                                    lion,     eagle,   crocodile,     basilisk
+    root, trunk                           tiger,     falcon    basilisk, 
+                                         buffalo,             dragon
+                                         dolphin, whale
 ```
 
 -----

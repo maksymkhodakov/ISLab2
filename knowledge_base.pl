@@ -30,6 +30,7 @@ is_a(butterfly, insect).
 is_a(ant, insect).
 is_a(frog, amphibian).
 is_a(amphibian, animal).
+is_a(mythical_creature, animal).
 is_a(mermaid, mythical_creature).
 is_a(mermaid, human).
 is_a(dragon, mythical_creature).
