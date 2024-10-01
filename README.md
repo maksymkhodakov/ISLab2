@@ -29,7 +29,10 @@
 ```
 ?- inherit(lion, animal).
 ?- inherit(dolphin, living_being).
+?- inherit(butterfly, living_being).
+?- inherit(mermaid, animal).
 ```
+**Пояснення:** Перевіряємо, чи є об'єкт (наприклад, `lion`, `dolphin`, `butterfly`) нащадком певної категорії, наприклад, `animal` або `living_being`.
 
 -----
 ##### Чи є частиною:
@@ -37,16 +40,19 @@
 ?- part_of_chain(tail, body).
 ?- part_of_chain(claw, body).
 ?- part_of_chain(beak, animal).
+?- part_of_chain(venom, basilisk).
+?- part_of_chain(fin, fish).
 ```
-
+**Пояснення:** Ці запити перевіряють, чи є частина (наприклад, `tail`, `claw`, `fin`) частиною певного об'єкта (наприклад, `body`, `fish`).
 
 -----
 ##### Перевірка заборони спадкування:
 ```
 ?- prohibit_inheritance(leg, animal).
 ?- prohibit_inheritance(teeth, animal).
+?- prohibit_inheritance(wings, reptile).
 ```
-
+**Пояснення:** Використовується для перевірки заборони на спадкування зв'язків типу `part_of` для родо-видових зв'язків, наприклад, `wings` не можуть успадковуватись для рептилій.
 
 -----
 ##### Мульти-спадкування:
@@ -55,7 +61,9 @@
 ?- multi_inherit(dragon, [mythical_creature, reptile]).
 ?- multi_inherit(basilisk, [mythical_creature, reptile]).
 ?- multi_inherit(centaur, [mythical_creature, horse, human]).
+?- multi_inherit(griffin, [mythical_creature, bird, lion]).
 ```
+**Пояснення:** Запити перевіряють, чи є об'єкт (наприклад, `mermaid`, `dragon`, `griffin`) нащадком декількох предків (2 або 3). Наприклад, `griffin` є нащадком `bird` та `lion`.
 
 -----
 ##### Виведення всіх предків:
@@ -63,8 +71,10 @@
 ?- inherit(tiger, Ancestor).
 ?- inherit(dolphin, Ancestor).
 ?- inherit(whale, Ancestor).
+?- inherit(ant, Ancestor).
+?- inherit(butterfly, Ancestor).
 ```
-
+**Пояснення:** Ці запити виводять усіх предків об'єкта (наприклад, `tiger`, `dolphin`, `ant`), показуючи повну ієрархію спадкування.
 
 -----
 #### Перевірка причинно-наслідкового зв'язку:
@@ -72,50 +82,67 @@
 ##### Чи викликає lion страх у deer?
 ```
 ?- causes(lion, fear_in_deer).
+?- causes(dragon, destruction).
+?- causes(basilisk, paralysis).
 ```
+**Пояснення:** Ці запити перевіряють причинно-наслідкові зв'язки між об'єктами. Наприклад, чи викликає `lion` страх у `deer`, чи викликає `basilisk` параліч.
+
 ##### Чи викликає fire руйнування через dragon?
 ```
 ?- causal_chain(fire, destruction).
+?- causal_chain(dragon, destruction).
 ```
+**Пояснення:** Перевіряємо транзитивний причинно-наслідковий ланцюг. Наприклад, чи спричиняє `fire` руйнування через `dragon`.
 
 ##### Нескінченне виведення через циклічний зв'язок:
 ```
 ?- causal_chain(cycle, X).
 ```
+**Пояснення:** Цей запит створює нескінченне виведення через рекурсивний зв'язок `causes(cycle, cycle)`.
 
 -----
 #### Перевірка зв'язку requires:
 ##### Чи потребує bird air?
 ```
 ?- requires(bird, air).
+?- requires(fish, water).
+?- requires(dragon, fire).
 ```
+**Пояснення:** Перевірка функціональних зв'язків між об'єктами, де один об'єкт потребує іншого для існування. Наприклад, `fish` потребує `water`, а `dragon` потребує `fire`.
+
 ##### Чи потребує dragon sunlight через fire?
 ```
 ?- required_chain(dragon, sunlight).
 ```
+**Пояснення:** Транзитивний зв'язок, який показує, що `dragon` через залежність від `fire` також потребує `sunlight`.
 
 #### Перевірка всіх наслідків від lion:
-#### Виведення всіх ефектів, які викликає lion:
 ```
 ?- causal_chain(lion, Effect).
+?- causal_chain(fire, Effect).
 ```
+**Пояснення:** Запити перевіряють всі наслідки, які може викликати об'єкт (наприклад, `lion`, `fire`).
 
 #### Перевірка всіх необхідних умов для fish:
 ```
 ?- required_chain(fish, Condition).
 ```
+**Пояснення:** Запит виводить всі об'єкти, які є необхідними умовами для існування `fish`.
 
 -----
 #### Перевірка взаємодій:
 ##### Чи взаємодіють lion і tiger?
 ```
 ?- interaction(lion, tiger).
+?- interaction(dragon, basilisk).
 ```
+**Пояснення:** Перевіряємо взаємодію між об'єктами. Наприклад, чи є взаємодія між `lion` та `tiger`.
 
 ##### Транзитивна взаємодія між об'єктами:
 ```
 ?- interaction_chain(lion, basilisk).
 ```
+**Пояснення:** Транзитивна взаємодія між об'єктами. Перевіряємо, чи є ланцюжок взаємодії між `lion` та `basilisk`.
 
 -----
 #### Перевірка залежностей:
@@ -123,20 +150,24 @@
 ```
 ?- dependent_on(dragon, fire).
 ```
+**Пояснення:** Перевіряємо залежність об'єкта `dragon` від `fire`.
 
 ##### Транзитивна залежність між об'єктами:
 ```
 ?- dependency_chain(dragon, sunlight).
+?- dependency_chain(butterfly, sunlight).
 ```
+**Пояснення:** Транзитивні залежності між об'єктами. Перевіряємо, чи залежить об'єкт через інші залежності.
 
-----
+-----
 ### Поєднання всіх типів зв'язків:
 #### Чи є частиною dragon (part_of) щось, що викликає (causes) страх у human?
 ```
 ?- part_of_chain(Part, dragon), causes(Part, fear_in_human).
 ```
+**Пояснення:** Цей запит об'єднує кілька типів зв'язків (частина-ціле та причинно-наслідкові), щоб знайти об'єкт, який є частиною `dragon` і викликає страх у `human`.
 
-----
+-----
 ### Виконання основних умов:
 
 1. **Prolog**:  
